@@ -148,7 +148,50 @@
   });
 })();
 
-// ===== Contact Form — handled by FormSubmit =====
+// ===== Contact Form =====
+(function initForm() {
+  var form = document.getElementById('contact-form');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var name = document.getElementById('name').value.trim();
+    var email = document.getElementById('email').value.trim();
+    var message = document.getElementById('message').value.trim();
+
+    if (!name || !email || !message) return;
+
+    var btn = form.querySelector('.btn-submit');
+    btn.disabled = true;
+    btn.querySelector('span').textContent = 'Sending...';
+
+    fetch(form.action, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    }).then(function (response) {
+      if (response.ok) {
+        form.innerHTML =
+          '<div class="form-success">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+              '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>' +
+              '<polyline points="22 4 12 14.01 9 11.01"/>' +
+            '</svg>' +
+            '<h3>Message Sent!</h3>' +
+            '<p>Thanks, ' + name + '. We\'ll get back to you soon.</p>' +
+          '</div>';
+      } else {
+        btn.disabled = false;
+        btn.querySelector('span').textContent = 'Send Message';
+        alert('Something went wrong. Please try again.');
+      }
+    }).catch(function () {
+      btn.disabled = false;
+      btn.querySelector('span').textContent = 'Send Message';
+      alert('Something went wrong. Please try again.');
+    });
+  });
+})();
 
 // ===== Smooth Scroll for Safari =====
 document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
