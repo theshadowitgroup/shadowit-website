@@ -1,6 +1,7 @@
 // ===== Particle Background =====
 (function initParticles() {
   const canvas = document.getElementById('particle-canvas');
+  if (!canvas) return;
   const ctx = canvas.getContext('2d');
   let particles = [];
   let mouse = { x: null, y: null };
@@ -151,6 +152,7 @@
 // ===== Contact Form =====
 (function initForm() {
   var form = document.getElementById('contact-form');
+  if (!form) return;
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
