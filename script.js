@@ -195,6 +195,28 @@
   });
 })();
 
+// ===== App Accordion =====
+(function initAccordion() {
+  document.querySelectorAll('.app-accordion-header').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var accordion = btn.closest('.app-accordion');
+      var isOpen = accordion.classList.contains('open');
+
+      // Close all others
+      document.querySelectorAll('.app-accordion.open').forEach(function (other) {
+        if (other !== accordion) {
+          other.classList.remove('open');
+          other.querySelector('.app-accordion-header').setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Toggle this one
+      accordion.classList.toggle('open');
+      btn.setAttribute('aria-expanded', !isOpen);
+    });
+  });
+})();
+
 // ===== Smooth Scroll for Safari =====
 document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
   anchor.addEventListener('click', function (e) {

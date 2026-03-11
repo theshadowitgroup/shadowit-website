@@ -683,6 +683,126 @@ a {
   font-size: 0.95rem;
 }
 
+/* ===== App Accordion ===== */
+.app-accordion {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.app-accordion:hover {
+  border-color: rgba(108, 99, 255, 0.2);
+  box-shadow: var(--glow);
+}
+
+.app-accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font-family: inherit;
+  text-align: left;
+  transition: background 0.2s;
+}
+
+.app-accordion-header:hover {
+  background: rgba(108, 99, 255, 0.04);
+}
+
+.app-header-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.app-accordion-chevron {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.app-accordion-chevron svg {
+  width: 24px;
+  height: 24px;
+  color: var(--text-secondary);
+  transition: color 0.3s;
+}
+
+.app-accordion.open .app-accordion-chevron {
+  transform: rotate(180deg);
+}
+
+.app-accordion.open .app-accordion-chevron svg {
+  color: var(--accent-2);
+}
+
+.app-accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.app-accordion.open .app-accordion-body {
+  max-height: 3000px;
+  transition: max-height 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.app-accordion-content {
+  padding: 0 32px 32px;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.app-accordion.open .app-accordion-content {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s ease 0.15s, transform 0.4s ease 0.15s;
+}
+
+/* Override app-header styles inside accordion */
+.app-accordion .app-header {
+  margin-bottom: 0;
+}
+
+/* Accordion feature cards inherit existing styles */
+.app-accordion .app-description {
+  margin-bottom: 40px;
+}
+
+.app-accordion .cta-card {
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .app-accordion-header {
+    padding: 24px 20px;
+  }
+
+  .app-header-left {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .app-accordion-content {
+    padding: 0 20px 24px;
+  }
+}
+
 /* ===== Fade-up Animation ===== */
 .fade-up {
   opacity: 0;
