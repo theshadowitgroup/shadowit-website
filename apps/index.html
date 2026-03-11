@@ -70,10 +70,10 @@
         <div class="app-accordion-body">
           <div class="app-accordion-content">
             <p class="app-description">
-              MightyTask is a powerful text expansion and automation tool that lets you create snippets,
-              record macros, and automate repetitive typing across any application on your Mac.
-              Type a short abbreviation and watch it expand into full paragraphs, formatted text,
-              or dynamic content — saving you hours of repetitive work.
+              MightyTask is a powerful text expansion and automation tool for macOS. Create snippets with
+              custom abbreviations that instantly expand into full text — including dynamic variables, fill-in
+              forms, and rich formatting. Record and replay keyboard and mouse macros, organize everything
+              into categories, and import snippets from other tools. Works system-wide across every app on your Mac.
             </p>
 
             <!-- Primary Features -->
@@ -86,7 +86,7 @@
                   </svg>
                 </div>
                 <h4>Text Expansion</h4>
-                <p>Create custom abbreviations that instantly expand into full text snippets. Type a few characters and let MightyTask do the rest.</p>
+                <p>Type a short abbreviation and it instantly expands into full text. Supports delimiter-triggered (space, tab, enter) and exact-match expansion with case-insensitive matching.</p>
               </div>
 
               <div class="feature-card">
@@ -96,7 +96,7 @@
                   </svg>
                 </div>
                 <h4>Dynamic Variables</h4>
-                <p>Insert live data into your snippets — dates, times, clipboard contents, mathematical calculations, and more.</p>
+                <p>Insert live data with variables like <code>{{date}}</code>, <code>{{time}}</code>, <code>{{clipboard}}</code>, <code>{{username}}</code>, <code>{{uuid}}</code>, <code>{{random:1:100}}</code>, <code>{{calc:2+2}}</code>, and <code>{{cursor}}</code> for cursor positioning after expansion.</p>
               </div>
 
               <div class="feature-card">
@@ -106,7 +106,7 @@
                   </svg>
                 </div>
                 <h4>Fill-In Forms</h4>
-                <p>Add interactive fields to your snippets that prompt you for input on each expansion — perfect for templates and personalized responses.</p>
+                <p>Add interactive fields with <code>{{field:Name}}</code> or <code>{{field:Name:Default}}</code>. A form pops up on expansion so you can fill in custom values before the text is inserted — ideal for templates and email replies.</p>
               </div>
 
               <div class="feature-card">
@@ -116,7 +116,7 @@
                   </svg>
                 </div>
                 <h4>Macro Recording</h4>
-                <p>Record keyboard and mouse actions, then replay them on demand. Automate complex multi-step workflows with a single trigger.</p>
+                <p>Record full keyboard and mouse sequences — clicks, movement, and keystrokes with precise timing. Save recordings, load them later, and replay with configurable repeat counts.</p>
               </div>
 
               <div class="feature-card">
@@ -126,7 +126,7 @@
                   </svg>
                 </div>
                 <h4>App-Specific Snippets</h4>
-                <p>Assign snippets to specific applications so they only activate where you need them — keeping your workflow organized and conflict-free.</p>
+                <p>Control exactly where each snippet works. Use whitelist mode to limit a snippet to specific apps, or blacklist mode to disable it in certain apps. Automatically skips secure password fields.</p>
               </div>
 
               <div class="feature-card">
@@ -136,7 +136,7 @@
                   </svg>
                 </div>
                 <h4>Rich Text Support</h4>
-                <p>Expand formatted text with HTML and RTF support. Insert styled content, links, and structured layouts directly into any app.</p>
+                <p>Create snippets with full formatting using HTML or RTF. MightyTask automatically converts HTML to rich text and pastes it with styles, links, and layouts preserved in any app.</p>
               </div>
             </div>
 
@@ -151,7 +151,7 @@
                 </div>
                 <div>
                   <h4>Sentry Mode</h4>
-                  <p>Keep your Mac awake and active with automated cursor movement — perfect for long-running tasks.</p>
+                  <p>Prevent your Mac from sleeping with automated cursor movement at configurable intervals from 1–10 seconds. Toggle it on and off from the main window or a global shortcut.</p>
                 </div>
               </div>
 
@@ -163,7 +163,7 @@
                 </div>
                 <div>
                   <h4>Sound Feedback</h4>
-                  <p>Hear a confirmation sound when snippets expand. Choose from built-in sounds or add your own.</p>
+                  <p>Hear an audio confirmation each time a snippet expands. Choose from 9 built-in macOS sounds or add your own custom MP3, AIFF, WAV, or M4A files. Preview sounds before selecting.</p>
                 </div>
               </div>
 
@@ -174,8 +174,8 @@
                   </svg>
                 </div>
                 <div>
-                  <h4>Statistics Tracking</h4>
-                  <p>Monitor how often you use each snippet and how much time you've saved with detailed usage stats.</p>
+                  <h4>Statistics &amp; Usage Tracking</h4>
+                  <p>Track how many times each snippet is used and when it was last expanded. View totals, most-used rankings, and category breakdowns. Export your stats to CSV.</p>
                 </div>
               </div>
 
@@ -187,7 +187,7 @@
                 </div>
                 <div>
                   <h4>Import &amp; Export</h4>
-                  <p>Migrate your snippets from TextExpander, Alfred, or aText. Export and back up your collection anytime.</p>
+                  <p>Smart import automatically detects and converts snippets from TextExpander, Alfred, and aText. Export your collection as JSON or CSV for backups and sharing.</p>
                 </div>
               </div>
 
@@ -199,7 +199,7 @@
                 </div>
                 <div>
                   <h4>Snippet Packs</h4>
-                  <p>Bundle and share collections of snippets with your team or the community.</p>
+                  <p>Bundle snippets into shareable packs with author, description, and version metadata. Export as .mightypack files to share with your team or the community.</p>
                 </div>
               </div>
 
@@ -210,8 +210,32 @@
                   </svg>
                 </div>
                 <div>
-                  <h4>Snippet Organization</h4>
-                  <p>Organize snippets into categories, search by name or content, and keep everything tidy as your collection grows.</p>
+                  <h4>Organization &amp; Search</h4>
+                  <p>Organize snippets into custom categories, search by abbreviation or content, multi-select for batch export or delete, and duplicate snippets with one click.</p>
+                </div>
+              </div>
+
+              <div class="detail-item">
+                <div class="detail-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4>Global Shortcuts</h4>
+                  <p>Control everything from the keyboard. Dedicated hotkeys for recording (Cmd+1–4), Sentry Mode (Cmd+Shift+S), new snippets, search, and more — all without leaving your current app.</p>
+                </div>
+              </div>
+
+              <div class="detail-item">
+                <div class="detail-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4>Automatic Backups</h4>
+                  <p>Your snippets are automatically backed up before every change. MightyTask keeps the last 10 timestamped backups so your data is always safe.</p>
                 </div>
               </div>
             </div>
