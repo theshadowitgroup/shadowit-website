@@ -748,19 +748,25 @@ a {
   color: var(--accent-2);
 }
 
+/* ponytail: grid 0fr→1fr instead of a max-height cap — no clipping at any content height */
 .app-accordion-body {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition: grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s 0.5s;
 }
 
 .app-accordion.open .app-accordion-body {
-  max-height: 3000px;
-  transition: max-height 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition: grid-template-rows 0.7s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s;
 }
 
 .app-accordion-content {
-  padding: 0 32px 32px;
+  overflow: hidden;
+  min-height: 0;
+  /* bottom spacing lives on the last child — padding here would floor the 0fr track above 0 */
+  padding: 0 32px;
   opacity: 0;
   transform: translateY(-8px);
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -784,6 +790,7 @@ a {
 
 .app-accordion .cta-card {
   margin-top: 8px;
+  margin-bottom: 32px;
 }
 
 @media (max-width: 768px) {
@@ -799,12 +806,17 @@ a {
   }
 
   .app-accordion-content {
-    padding: 0 20px 24px;
+    padding: 0 20px;
+  }
+
+  .app-accordion .cta-card {
+    margin-bottom: 24px;
   }
 }
 
 /* ===== Fade-up Animation ===== */
-.fade-up {
+/* Hidden-until-scroll only when JS is running — no-JS visitors see everything */
+.js .fade-up {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.7s ease, transform 0.7s ease;
@@ -901,4 +913,129 @@ a {
   .feature-cards {
     grid-template-columns: 1fr;
   }
+}
+
+/* ===== Accessibility ===== */
+.skip-link {
+  position: fixed;
+  top: -60px;
+  left: 16px;
+  z-index: 1001;
+  padding: 10px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--accent-1);
+  border-radius: 8px;
+  font-weight: 600;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
+
+  .js .fade-up {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ===== Footer Legal Link ===== */
+.footer-link {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  transition: color 0.3s;
+}
+
+.footer-link:hover {
+  color: var(--text-primary);
+}
+
+/* ===== CTA Button ===== */
+.cta-card .btn {
+  margin-top: 24px;
+}
+
+/* ===== Legal Pages ===== */
+.legal {
+  padding: 160px 0 100px;
+}
+
+.legal .container {
+  max-width: 760px;
+}
+
+.legal h1 {
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+}
+
+.legal .effective-date {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 48px;
+}
+
+.legal h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 40px 0 12px;
+}
+
+.legal p,
+.legal li {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+.legal ul {
+  padding-left: 24px;
+  margin: 12px 0;
+}
+
+.legal a {
+  color: var(--accent-2);
+}
+
+/* ===== 404 Page ===== */
+.error-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 24px;
+}
+
+.error-code {
+  font-size: clamp(5rem, 15vw, 9rem);
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.error-page p {
+  color: var(--text-secondary);
+  margin-bottom: 32px;
 }

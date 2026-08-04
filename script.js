@@ -1,3 +1,5 @@
+var REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // ===== Particle Background =====
 (function initParticles() {
   const canvas = document.getElementById('particle-canvas');
@@ -11,6 +13,8 @@
   function resize() {
     canvas.width = canvas.parentElement.offsetWidth;
     canvas.height = canvas.parentElement.offsetHeight;
+    // resizing clears the canvas; with no animation loop, repaint the static frame
+    if (REDUCED_MOTION) animate();
   }
 
   resize();
@@ -91,7 +95,8 @@
       }
     }
 
-    requestAnimationFrame(animate);
+    // ponytail: reduced motion gets one static frame instead of the animation loop
+    if (!REDUCED_MOTION) requestAnimationFrame(animate);
   }
 
   animate();
@@ -117,6 +122,7 @@
   toggle.addEventListener('click', function () {
     toggle.classList.toggle('active');
     links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', links.classList.contains('open'));
   });
 
   // Close menu on link click
@@ -124,6 +130,7 @@
     link.addEventListener('click', function () {
       toggle.classList.remove('active');
       links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
     });
   });
 })();
@@ -175,7 +182,7 @@
       if (response.ok) {
         form.innerHTML =
           '<div class="form-success">' +
-            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+            '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
               '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>' +
               '<polyline points="22 4 12 14.01 9 11.01"/>' +
             '</svg>' +
@@ -223,7 +230,8 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     var target = document.querySelector(this.getAttribute('href'));
     if (target) {
       e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth' });
+      target.scrollIntoView({ behavior: REDUCED_MOTION ? 'auto' : 'smooth' });
+      target.focus({ preventScroll: true });
     }
   });
 });
