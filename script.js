@@ -187,8 +187,11 @@ var REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').match
               '<polyline points="22 4 12 14.01 9 11.01"/>' +
             '</svg>' +
             '<h3>Message Sent!</h3>' +
-            '<p>Thanks, ' + name + '. We\'ll get back to you soon.</p>' +
+            '<p></p>' +
           '</div>';
+        // textContent, not innerHTML — the name is user input
+        form.querySelector('.form-success p').textContent =
+          'Thanks, ' + name + ". We'll get back to you soon.";
       } else {
         btn.disabled = false;
         btn.querySelector('span').textContent = 'Send Message';
